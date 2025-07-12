@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - Flask App{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1>Welcome to the Flask App</h1>
+    <p class="lead">This is the home page of your application.</p>
+    <p>
+        Use the navigation bar to explore the features of the app, like viewing project assignees or other functionalities.
+    </p>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Feature 1</h5>
+                <p class="card-text">Description of the first feature. This can be anything your app offers.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Feature 2</h5>
+                <p class="card-text">Description of the second feature. Highlight something important here.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Feature 3</h5>
+                <p class="card-text">Description of the third feature. Showcase a key functionality.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

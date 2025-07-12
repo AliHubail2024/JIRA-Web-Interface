@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}JIRA Reports{% endblock %}
+
+{% block content %}
+<h1>JIRA Reports</h1>
+<label for="reportType">Select Report Type:</label>
+<select id="reportType">
+    <option value="project">All Issues in Project</option>
+    <option value="assigned">Assigned to Me</option>
+    <option value="open">Open Issues</option>
+    <option value="custom">Custom Filters</option>
+</select>
+
+<div id="projectFilter">
+    <label for="project">Project:</label>
+    <select id="project"></select>
+</div>
+
+<div id="customFilters" style="display:none;">
+    <label for="assignee">Assignee:</label>
+    <select id="assignee"></select>
+    <label for="status">Status:</label>
+    <select id="status"></select>
+</div>
+
+<div>
+    <strong>Show Columns:</strong>
+    <label class="column-toggle"><input type="checkbox" class="col-toggle" value="key" checked> Issue Key</label>
+    <label class="column-toggle"><input type="checkbox" class="col-toggle" value="summary" checked> Summary</label>
+    <label class="column-toggle"><input type="checkbox" class="col-toggle" value="status" checked> Status</label>
+    <label class="column-toggle"><input type="checkbox" class="col-toggle" value="assignee" checked> Assignee</label>
+    <label class="column-toggle"><input type="checkbox" class="col-toggle" value="duedate"> Due Date</label>
+    <label class="column-toggle"><input type="checkbox" class="col-toggle" value="created"> Created</label>
+    <label class="column-toggle"><input type="checkbox" class="col-toggle" value="updated"> Updated</label>
+    <label class="column-toggle"><input type="checkbox" class="col-toggle" value="priority"> Priority</label>
+    <label class="column-toggle"><input type="checkbox" class="col-toggle" value="reporter"> Reporter</label>
+    <label class="column-toggle"><input type="checkbox" class="col-toggle" value="resolution"> Resolution</label>
+</div>
+
+<button id="loadReports">Load Reports</button>
+
+<table id="reportsTable" style="display:none;">
+    <thead>
+        <tr id="tableHead"></tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+<p id="message"></p>
+
+<script src="{{ url_for('static', filename='js/formating.js') }}"></script>
+<script src="{{ url_for('static', filename='js/reports.js') }}"></script>
+{% endblock %}

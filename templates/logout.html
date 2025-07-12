@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('create_issue') }}">Create Issue</a></li>
+                <li><a href="{{ url_for('Reports') }}">Reports</a></li>
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>You have been logged out successfully.</h1>
+        <p>Thank you for using our application!</p>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My Jira App</p>
+    </footer>
+    
+</body>
+</html>

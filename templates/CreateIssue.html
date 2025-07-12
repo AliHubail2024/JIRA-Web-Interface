@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Jira Issue</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2em; }
+        label { display: block; margin-top: 1em; }
+        select, input, textarea { width: 300px; }
+        button { margin-top: 1em; }
+    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('create_issue') }}">Create Issue</a></li>
+                <li><a href="{{ url_for('Reports') }}">Reports</a></li>
+            </ul>
+        </nav>
+    </header>
+    <footer>
+        <p>&copy; 2025 My Jira App</p>
+        <p>Powered by Flask and Jira API</p>
+
+    </footer>
+        <script src="{{ url_for('static', filename='js/formating.js') }}"></script>
+
+        <h1>Create Jira Issue</h1>
+    <p id="message"></p>
+    <form id="createIssueForm">
+        <label for="project">Project:</label>
+        <select id="project" name="project" required></select>
+
+        <label for="summary">Summary:</label>
+        <input type="text" id="summary" name="summary" required>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"></textarea>
+
+        <label for="assignee">Assignee:</label>
+        <select id="assignee" name="assignee"></select>
+
+        <label for="issueType">Issue Type:</label>
+        <select id="issueType" name="issueType"></select>
+
+        <label for="priority">Priority:</label>
+        <select id="priority" name="priority"></select>
+        <br>
+        <button type="submit"  >Create Issue</button>
+    </form>
+        <script>
+            populateProjects();
+            populateAssignees() 
+            populateIssueTypes();
+            populatePriorities();
+
+
+    </script>
+
+
+
+    
+    
+    <!--
+    <script>
+        // Populate dropdowns
+        async function populateProjects() {
+            const res = await fetch('http://localhost:5000/api/projects');
+            const projects = await res.json();
+            const projectSelect = document.getElementById('project');
+            projectSelect.innerHTML = '';
+            projects.forEach(p => {
+                projectSelect.innerHTML += `<option value="${p.key}">${p.name}</option>`;
+            });
+            await populateIssueTypes();
+            await populateAssignees();
+        }
+
+        async function populateAssignees() {
+            const projectKey = document.getElementById('project').value;
+            if (!projectKey) return;
+            const res = await fetch(`http://localhost:5000/api/assignees?project=${projectKey}`);
+            const users = await res.json();
+            const assigneeSelect = document.getElementById('assignee');
+            assigneeSelect.innerHTML = '<option value="">Unassigned</option>';
+            users.forEach(u => {
+                assigneeSelect.innerHTML += `<option value="${u.accountId}">${u.displayName}</option>`;
+            });
+        }
+
+        async function populateIssueTypes() {
+            const projectKey = document.getElementById('project').value;
+            if (!projectKey) return;
+            const res = await fetch(`http://localhost:5000/api/issuetypes?project=${projectKey}`);
+            const types = await res.json();
+            const issueTypeSelect = document.getElementById('issueType');
+            issueTypeSelect.innerHTML = '';
+            types.forEach(type => {
+                issueTypeSelect.innerHTML += `<option value="${type.id}">${type.name}</option>`;
+            });
+        }
+
+async function populatePriorities() {
+    const res = await fetch('http://localhost:5000/api/priorities');
+    const priorities = await res.json();
+    const prioritySelect = document.getElementById('priority');
+    prioritySelect.innerHTML = '';
+    priorities.forEach(p => {
+        prioritySelect.innerHTML += `<option value="${p.name}">${p.name}</option>`;
+    });
+}
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            await populateProjects();
+            await populatePriorities();
+            document.getElementById('project').onchange = async () => {
+                await populateIssueTypes();
+                await populateAssignees();
+            };
+        });
+
+        // Handle form submission
+        document.getElementById('createIssueForm').onsubmit = async function(e) {
+            e.preventDefault();
+            const message = document.getElementById('message');
+            message.textContent = 'Creating issue...';
+
+            const project = document.getElementById('project').value;
+            const summary = document.getElementById('summary').value;
+            const description = document.getElementById('description').value;
+            const assignee = document.getElementById('assignee').value;
+            const issueType = document.getElementById('issueType').value;
+            const priority = document.getElementById('priority').value;
+
+            const payload = {
+                project,
+                summary,
+                description,
+                assignee,
+                issueType,
+                priority
+            };
+
+            try {
+                const res = await fetch('http://localhost:5000/api/create-issue', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                if (res.ok) {
+                    message.textContent = `Issue created: ${data.key}`;
+                } else {
+                    message.textContent = 'Error: ' + (data.error || 'Unknown error') + res;
+                }
+            } catch (err) {
+                message.textContent = 'Error: ' + err.message;
+            }
+        };
+    </script>
+    -->
+
+</body>
+</html>
