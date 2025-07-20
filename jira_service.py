@@ -128,5 +128,8 @@ def create_issue(data):
 
 
 
-
+def get_screen_fields():
+    endpoint = "screens/10033/availableFields"
+    Fieldlist = call_jira_api(endpoint)
+    print(Fieldlist)
 
