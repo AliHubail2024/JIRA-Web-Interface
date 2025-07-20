@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template ,request, jsonify,session
 from jira_service import *
 from flask import request, jsonify
 import urllib.parse
@@ -7,6 +7,13 @@ import urllib.parse
 # from flask import Flask, render_template, request, jsonify
 # Create the Flask application
 app = Flask(__name__)
+
+
+
+
+
+
+
 
 
 # Define a route for the login page
@@ -23,7 +30,7 @@ def login():
     # return render_template('login.html', message="Please log in")
     # For now, we just render the login template
     
-    return render_template('login.html')    
+    return render_template('login.html')
 
 
 
@@ -51,12 +58,20 @@ def dashboard():
 def test():
     return render_template('test.html')
 
+@app.route('/Create')
+def Create():
+    return render_template('CreateIssue.html')
+
 # Define a route for the logout page
 @app.route('/logout')
 def logout():
     # Here you would typically handle the logout logic, like clearing session data
     return render_template('logout.html')
 
+@app.route('/config', methods=['GET'])
+def get_config():
+    base_url = request.host_url  # Host URL (e.g., http://127.0.0.1:5000/)
+    return jsonify({"apiBaseUrl": base_url + "api"})  # Append /api for API base
 
 # API section
 
@@ -69,7 +84,12 @@ def fetch_project_list():
 
 
 
-
+@app.route("/api/status")
+def fetch_status():
+    statuslist = get_status_list()
+    if statuslist:
+        return jsonify(statuslist),200
+    return jsonify({"error:":"Failed to get the status list"}),500
 
 
 @app.route('/api/currentuser', methods=['GET'])
