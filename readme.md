@@ -63,5 +63,5 @@ Follow these instructions to set up and run the JIRA application on your local m
 5. **Run the Application**
 
     ```bash
-    flask run
+    flask FluskApp.py
     

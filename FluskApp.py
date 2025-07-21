@@ -61,12 +61,14 @@ def test():
 @app.route('/Create')
 def Create():
     return render_template('CreateIssue.html')
-
+"""
 # Define a route for the logout page
 @app.route('/logout')
 def logout():
     # Here you would typically handle the logout logic, like clearing session data
     return render_template('logout.html')
+"""
+
 
 @app.route('/config', methods=['GET'])
 def get_config():
