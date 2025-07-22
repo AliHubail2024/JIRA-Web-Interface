@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Jira App{% endblock %}</title>
+    <title>{% block title %}Jira Web App{% endblock %}</title>
     <!-- Add any external CSS or frameworks like Bootstrap -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{{ url_for('index') }}">Jira App</a>
+            <a class="navbar-brand" href="{{ url_for('index') }}">Jira Web App</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -34,7 +34,7 @@
     </div>
 
     <footer class="text-center mt-5">
-        <p>&copy; 2025 Flask App. All rights reserved.</p>
+        <!--<p>&copy;</p>-->
     </footer>
 
     <!-- Add any external JavaScript or libraries -->

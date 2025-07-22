@@ -39,24 +39,14 @@ function renderTableBody(issues, selectedCols) {
     });
 }
 
-/*
-async function populateProjects() {
-    const projectSelect = document.getElementById('project');
-    const res = await fetch('http://localhost:5000/api/projects');
-    const projects = await res.json();
-    projectSelect.innerHTML = '<option value="">Any</option>';
-    projects.forEach(p => {
-        projectSelect.innerHTML += `<option value="${p.key}">${p.name}</option>`;
-    });
-}
-*/
+
 function test() {
     console.log("Test function called");
     return populateProjects();
     
 }
 async function populateProjects() {
-    const res = await fetch('http://localhost:5000/api/projects');
+    const res = await fetch('/api/projects');
     const projects = await res.json();
     const projectSelect = document.getElementById('project');
     projectSelect.innerHTML = '';
@@ -79,7 +69,7 @@ async function populateStatuses() {
 async function populateIssueTypes() {
     const projectKey = document.getElementById('project').value;
     if (!projectKey) return;
-    const res = await fetch(`http://localhost:5000/api/issuetypes?project=${projectKey}`);
+    const res = await fetch(`/api/issuetypes?project=${projectKey}`);
     const types = await res.json();
     const issueTypeSelect = document.getElementById('issueType');
     issueTypeSelect.innerHTML = '';
@@ -88,7 +78,7 @@ async function populateIssueTypes() {
     });
 }
 async function populatePriorities() {
-    const res = await fetch('http://localhost:5000/api/priorities');
+    const res = await fetch('/api/priorities');
     const priorities = await res.json();
     const prioritySelect = document.getElementById('priority');
     prioritySelect.innerHTML = '';
@@ -103,7 +93,7 @@ async function populateAssignees() {
         assigneeSelect.innerHTML = '<option value="">Any</option>';
         return;
     }
-    const res = await fetch(`http://localhost:5000/api/assignees?project=${projectKey}`);
+    const res = await fetch(`/api/assignees?project=${projectKey}`);
     const users = await res.json();
     assigneeSelect.innerHTML = '<option value="">Any</option><option value="currentUser()">Me</option><option value="unassigned">Unassigned</option>';
     users.forEach(u => {
@@ -178,7 +168,7 @@ async function populateAssignees() {
             table.style.display = 'none';
 
             try {
-                const response = await fetch('http://localhost:5000/api/search?jql=' + encodeURIComponent(jql));
+                const response = await fetch('/api/search?jql=' + encodeURIComponent(jql));
                 if (!response.ok) throw new Error('Failed to fetch data');
                 const data = await response.json();
                 if (!data.issues || data.issues.length === 0) {

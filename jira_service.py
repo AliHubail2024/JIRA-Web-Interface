@@ -99,10 +99,7 @@ def get_Current_user_info():
     endpoint = "myself"
     return call_jira_api(endpoint)
 
-
-
-
-
+# To Crea new Issue in jira
 def create_issue(data):
     """
     Create a new issue in Jira.
@@ -125,11 +122,3 @@ def create_issue(data):
     except requests.exceptions.RequestException as e:
         print(f"Error creating issue: {str(e)}")
         return None
-
-
-
-def get_screen_fields():
-    endpoint = "screens/10033/availableFields"
-    Fieldlist = call_jira_api(endpoint)
-    print(Fieldlist)
-
